@@ -1,10 +1,6 @@
 = Delicious Rails: BDD/TDD Primer
 
-BDD/TDD introduction with Adam Bair and Paul Ostazeski
-
-== Past Classes
-
-* Rocky Mountain Ruby Conference in Boulder, Colorado - August 2011
+A BDD/TDD introduction with Adam Bair and Paul Ostazeski
 
 == Abstract
 
@@ -23,6 +19,10 @@ Adam has a passion for elegant solutions and beautiful code. He is a Ruby and Ra
 === Paul Ostazeski
 
 Paul has been a Ruby user for many years, and has been developing with Rails for six years. In addition to Ruby, Paul enjoys using the zsh shell and the vim text editor, and has been a full time Linux user for over ten years. Prior to joining Intridea, Paul was a mathematician for the federal government. 
+
+== Past Classes
+
+* Rocky Mountain Ruby Conference in Boulder, Colorado - August 2011
 
 == License
 
