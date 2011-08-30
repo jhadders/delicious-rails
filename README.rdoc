@@ -1,0 +1,29 @@
+= Delicious Rails: BDD/TDD Primer
+
+BDD/TDD introduction with Adam Bair and Paul Ostazeski
+
+== Past Classes
+
+* Rocky Mountain Ruby Conference in Boulder, Colorado - August 2011
+
+== Abstract
+
+In this 3-hour workshop we’ll help you setup an automated test harness and introduce you to test-first methodologies as we attempt to build a simple Delicious.com clone together using Rails 3.1. Topics covered may include RVM, Ruby 1.9.2, Rails 3.1, Rspec, Capybara, Guard, and Spork as time allows. This will be a fun, hands-on/slides-free workshop in a relaxed atmosphere so please come prepared to hack, ask questions, and participate in discussions. Though we may not finish the application, you'll walk away with the knowledge of how to setup and get started testing Rails 3.1 along with running examples built in class.
+
+== Prerequisites
+
+A computer with RVM, Ruby 1.9.2, Rails 3.1, and your favorite text editor (*cough*vim*cough*). We expect that most attendees will have working knowledge or familiarity with Rails (any version) and feel comfortable installing gems and using the command line. While your machine's operating system isn't as important, we're familiar with Linux and OSX and as such will be of limited help troubleshooting Windows.
+
+== Instructors
+
+=== Adam Bair
+
+Adam has a passion for elegant solutions and beautiful code. He is a Ruby and Rails evangelist who advocates test driven development and web standards. Before joining Intridea, Adam worked at Revolution Health building large-scale applications used by millions of people each month.
+
+=== Paul Ostazeski
+
+Paul has been a Ruby user for many years, and has been developing with Rails for six years. In addition to Ruby, Paul enjoys using the zsh shell and the vim text editor, and has been a full time Linux user for over ten years. Prior to joining Intridea, Paul was a mathematician for the federal government. 
+
+== License
+
+Contact Adam Bair (adam@intridea.com, adambair@gmail.com)
