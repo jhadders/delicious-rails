@@ -18,4 +18,10 @@
 
     rails new delicious
 
+== 4. Start the Rails server
 
+    rails server
+
+== 5. Confirm that your app is running
+
+Open a browser and visit http://localhost:3000
