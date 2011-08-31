@@ -1,0 +1,8 @@
+== 1. Why?
+ - Increased confidence about quality and correctness of application code
+ - Built-in documentation of the application code's intent
+ - Ensures refactoring does not alter the code's contract
+ - Forces you to slow down and do one thing at a time
+== 2. How?
+ - Write a spec, run it, see it fail
+ - Write just enough code to make the spec pass
