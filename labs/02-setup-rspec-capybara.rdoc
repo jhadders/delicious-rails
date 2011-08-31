@@ -1,7 +1,7 @@
 = Lab 02: Setup Rspec and Capybara
 
 1. Add rspec-rails and capybara to Gemfile
-2. Run rspec generator and add capybara to spec_helper
+2. Initialize rspec and guard and capybara
 3. Create a request spec called homepage_spec.rb
 4. Write a failing request spec that verifies that the root page has "Welcome to Linkr"
 5. Remove default public/index page and create a welcome controller with an index
