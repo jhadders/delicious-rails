@@ -1,0 +1,43 @@
+= Lab 04 Solution: Setup Factory Girl
+
+== 1. Initialize Factory Girl
+
+  # Gemfile
+  group :development, :test do
+    # [...]
+    gem "factory_girl_rails"
+  end
+
+  # Bundle
+  bundle install
+
+  # Add to spec/spec_helper.rb
+  require 'factory_girl'
+  
+== 2. Create a user factory
+
+  mkdir spec/factories
+  touch spec/factories/user.rb
+
+  # populate it with
+
+  FactoryGirl.define do
+    sequence :nickname do |n|
+      "person#{n}"
+    end
+
+    sequence :email do |n|
+      "person#{n}@example.com"
+    end
+
+    factory :user do |f|
+      f.nickname {Factory.next :nickname}
+      f.email    {Factory.next :email}
+      f.password 'password'
+    end
+  end
+  
+== 3. Test the factory in the rails console
+
+  rails console
+  Factory(:user) #=> should yield a new user object

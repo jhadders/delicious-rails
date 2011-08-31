@@ -1,0 +1,6 @@
+= Lab 04: Setup Factory Girl
+
+1. Add factory_girl to Gemfile
+2. Create a user factory
+3. Test the factory in the rails console
+
