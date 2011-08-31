@@ -11,6 +11,14 @@
     # Bundle the dependencies
     bundle install
 
+    # Update the generators WITH AWESOME
+    # config/application.rb
+    config.generators do |g|
+      g.view_specs false
+      g.helper_specs false
+      t.assets false
+    end
+
 == 2. Run rspec generator and add capybara to spec_helper
 
     rails g rspec:install
