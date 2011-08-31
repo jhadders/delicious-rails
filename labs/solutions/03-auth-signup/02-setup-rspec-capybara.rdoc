@@ -1,0 +1,43 @@
+= Lab 03 Solution: Auth Signup
+
+== 1. Create a request spec called auth_spec.rb
+
+    touch spec/requests/auth_spec.rb
+
+== 2. Failing spec: homepage has a signup link
+
+    # spec/request/auth_spec.rb
+    require 'spec_helper'
+
+    feature 'Auth Signup:' do
+      scenario 'Homepage has a signup link' do
+        visit '/'
+        click_link 'signup'
+        page.should have_content('Sign up for Linkr')
+      end
+    end
+
+== 3. Make spec pass
+
+    # app/view/welcome/index.html.erb
+    <%= link_to "signup", signup_path %>
+
+    # run specs, they fail (no route), next step
+
+    # config/routes.rb
+    match "/signup", "users#new"
+
+    # run specs, they fail (no controller), next step
+    rails g controller users new
+
+    # run specs, they fail (missing 'Sign up for Linkr'), next step
+    # app/views/users/new.html.erb
+    <h2>Sign up for Linkr</h2>
+
+    # run specs, they pass, welcome to awesometown.
+
+== 4. Failing spec: signup page allows account creation
+
+
+
+== 5. Make spec pass hint: users model and controller
