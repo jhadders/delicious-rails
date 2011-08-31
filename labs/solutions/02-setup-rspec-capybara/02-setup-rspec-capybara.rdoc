@@ -1,0 +1,38 @@
+= Lab 02 Solution: Setup Rspec and Capybara
+
+== 1. Add rspec-rails and capybara to Gemfile
+
+    # Gemfile
+    group :development, :test do
+      rails-rspec
+      capybara
+    end
+
+    # Bundle the dependencies
+    bundle install
+
+== 2. Run rspec generator and add capybara to spec_helper
+
+    rails g rspec:install
+    
+    # spec/spec_helper.rb
+    require 'capybara'
+
+== 3. Create a request spec called homepage_spec.rb
+
+    mkdir spec/requests
+    touch spec/requests/homepage_spec.rb
+
+== 4. Write a request spec that verifies that the root page has "Welcome to Linkr"
+
+    # spec/homepage_spec.rb   
+    require 'spec_helper'
+    
+    feature 'Homepage:' do
+      
+      scenario 'Contains welcome text' do
+        visit '/'
+        page.should have_content('Welcome to Linkr')
+      end
+    end
+

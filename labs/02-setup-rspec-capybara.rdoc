@@ -1,0 +1,7 @@
+= Lab 02: Setup Rspec and Capybara
+
+1. Add rspec-rails and capybara to Gemfile
+2. Run rspec generator
+3. Create a request spec called homepage_spec.rb
+4. Write a request spec that verifies that the root page has "Welcome to Linkr"
+
