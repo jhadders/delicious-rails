@@ -38,6 +38,112 @@
 
 == 4. Failing spec: signup page allows account creation
 
+    # spec/request/auth_spec.rb
 
+    feature 'Auth Signup:' do
+      # [...]
+      scenario "Allows the creation of new accounts" do
+        visit signup_path
+        fill_in 'Nickname', :with => "jack"
+        fill_in 'Email', :with => "jack@example.com"
+        fill_in 'Password', :with => "password"
+        fill_in 'Password confirmation', :with => "password"
+        click_button "Sign-up with Linkr"
+        page.should have_content("successfully")
+      end
+    end
 
 == 5. Make spec pass hint: users model and controller
+
+    # run the spec, it fails, missing model, next
+    rails g model user email:string nickname:string password_digest:string
+    rake db:migrate
+
+    # run the spec, it fails, no user object, next
+    # spec/controllers/users_controller_spec.rb
+    it "creates a new user" do
+      get 'new'
+      assigns[:user].should_not be_nil
+    end
+
+    # run the specs, they fail, plus this new one (controller spec), next
+    # app/controllers/users_controller.rb
+    get new
+      @user = User.new
+    end
+    
+    # run the specs, they fail, minus the controller spec (missing routes), next
+    # config/routes.rb
+    resources :users, :only => [:new, :create]
+
+    # run the specs, they fail, no create action, next
+    # add controller spec
+    # spec/controllers/users_controller_spec.rb
+
+    describe "POST 'create'" do
+      it "should be successful" do
+        response.should be_success
+      end
+    end
+
+    # run the specs, they fail, 
+    # app/controllers/users_controller.rb
+    def create
+    end
+
+    # run the specs, they fail, missing template
+    # app/controllers/users_controller.rb
+    def create
+      render :text => "successfully"
+    end
+
+    # run the specs, they pass!
+    # still not the functionality we want, MORE TESTS.
+
+== 6. Make sure the users are created
+
+    # spec/controllers/users_controller.rb
+    it "should create a new user" do
+      lambda {
+        post 'create', :user => { :nickname => 'jack', :email => 'jack@example.com',
+                                 :password => 'password', :password_confirmation => 'password' }
+      }.should change(User, :count).by(1)
+    end
+
+    # spec fails, does not change the user count
+    # app/controllers/users_controller.rb
+    def create  
+      @user = User.new(params[:user])  
+      if @user.save  
+        redirect_to root_path, :notice => "Signed up successfully!"  
+      else  
+        render "new"  
+      end  
+    end
+    
+    # spec fails, unknown attribute: password
+    # app/model/user.rb
+    class User < ActiveRecord::Base
+      has_secure_password
+    end
+    
+    # spec fails, missing 'successfully'
+    # app/views/layouts/application.html.erb
+    <div id="flash">
+      <% if flash[:alert] || flash[:notice] %>
+        <div class="container">
+          <% if flash[:notice] %>
+            <div class="notice">
+              <p><%= flash[:notice] %></p>
+            </div>
+          <% end %>
+
+          <% if flash[:alert] %>
+            <div class="alert">
+              <p><%= flash[:alert] %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    
