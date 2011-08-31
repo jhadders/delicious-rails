@@ -16,12 +16,12 @@
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-      t.assets false
+      g.assets false
     end
 
 == 2. Run rspec generator and add capybara to spec_helper
 
-    rails g rspec:install
+    rails generate rspec:install
     
     # spec/spec_helper.rb
     require 'capybara'
@@ -57,7 +57,7 @@
 
     rm public/index.html
 
-    rails g controller welcome index
+    rails generate controller welcome index
 
 == 6. Update your default route (root_url) to point to welcome#index
 
