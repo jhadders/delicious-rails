@@ -14,9 +14,9 @@
     
     rails -v #=> Rails 3.1.0
 
-== 3. Create a new Rails application
+== 3. Create a new Rails application (without Test::Unit builtin)
 
-    rails new linkr
+    rails new linkr -T
 
 == 4. Start the Rails server
 
