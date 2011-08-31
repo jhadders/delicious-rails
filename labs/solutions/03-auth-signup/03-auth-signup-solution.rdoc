@@ -25,7 +25,7 @@
     # run specs, they fail (no route), next step
 
     # config/routes.rb
-    match "/signup", "users#new"
+    match "/signup", :to => "users#new"
 
     # run specs, they fail (no controller), next step
     rails g controller users new
