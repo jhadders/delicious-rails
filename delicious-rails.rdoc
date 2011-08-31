@@ -1,21 +1,180 @@
-== 1. Why?
+= Delicious Rails: Testing Primer
 
- - Increased confidence about quality and correctness of application code
- - Built-in documentation of the application code's intent
- - Ensures refactoring does not alter the code's contract
- - Forces you to slow down and do one thing at a time
- - Give you more time to reflect upon your code (really, this matters)
- - Makes it easier for other developers. Faster on-boarding.
+== Introductions
 
-== 2. How?
+  - Paul and Adam intro WELCOME TO ZOMBOCOM.
+  - A little about Intridea, who, where, how many, distributed, 5 years, etc
 
- - Write a spec
- - Run that spec
- - See it fail
- - Write just enough code to make the spec pass
+  Them, each say their name (we write it down), 
+        where they work, 
+        how familiar they are with rails, 
+        and what they hope to gain from the class.
 
-== 3. Haters gonna hate (and be wrong)
+== What are we building?
 
- - Too slow 
- - Doubles your effort
- - 
+  - a delicious clone (show delicious.com)
+  - auth from scratch (using the new has_secure_password)
+  - an automated test harness (guard in this case)
+
+== How are we building it?
+
+  - using test-first methodologies 
+  - top-down, request specs first (capybara)
+
+== What are we using to build it?
+
+  - rails 3.1.0 (official as of yesterday)
+  - rspec 2.0 (alternative to Test::Unit)
+  - capybara (launchy) (semi-alternative to Cucumber)
+  - guard (alternative to autotest)
+  - factory_girl (alternative to fixtures)
+  - shoulda-matchers (nice validation tests in rspec)
+
+== Test-first?
+
+  - TDD/BDD, whatever - just test your code
+  - Write the test first. Seriously. No code first.
+  - Explain what you want to do. Specify what you want to build.
+  - Then write the smallest amount of code required to make that test pass.
+  - Review the test and the code, refactor/tweak, start the cycle again.
+  - Outside-in, Test from the interface, then work your way down.
+
+== But why?
+
+  - Increased confidence about quality and correctness of application code
+  - Built-in documentation of the application code's intent
+  - Ensures refactoring does not alter the code's contract
+  - Forces you to slow down and do one thing at a time
+  - Give you more time to reflect upon your code (really, this matters)
+  - Makes it easier for other developers. Faster on-boarding.
+
+== Disclaimer
+
+  - This is going to be a hackfest. Mistakes will be made.
+  - This app will be ugly. Not focusing on styles today.
+  - We only have 3 hours. We won't finish. We'll hit the basics.
+  - We'll code a bit, you'll code a bit, and so on.
+  - PLEASE ASK STUPID QUESTIONS. NO REALLY. YOU'RE NOT THE ONLY ONE THINKING IT, help others :)
+
+== Perhaps a quick Rails Primer / Refresher?
+
+  - If you're not familiar with Rails you may want to pair up with someone who is... 
+
+== Quick Rspec Primer
+
+ - Alternative to Test::Unit
+ - instead of assert whatever, you do 'something'.should whatever
+
+    describe "User" do
+      it "has a full name" do
+        user = User.new(:first => 'happy', :last => 'gilmore')
+        user.name.should == "happy gilmore"
+      end
+
+      it "cannot be triangle face, never triangle face" do
+        user = User.new(:first => 'triangle', :last => 'face')
+        # the code would do something instead of the default, you know 
+        user.name.should_not == "triangle face"
+      end
+    end
+
+  - 'rake spec' will run all the specs in your project
+  - rake -T spec will show you all the options (models, requests, controllers)
+  - you have before/after for setup/teardown
+  
+== Quick Capybara Primer
+
+  - A good replacement / alternative to the verbosity of Cucumber.
+  - Integrates with Rspec. It reads like rspec. Can use the same before/describe/context blocks.
+  - Also introduces alternative background/feature/scenario blocks 
+  - Sometimes known as "request" specs
+  - These test the interface and killed view specs for me (sweet! hate those things)
+
+    feature "Signing Up:" do
+      scenario "The homepage should have a signup link" do
+        visit root_path
+        page.should have_content("signup")
+      end
+
+      scenario "Allows the creatation of new accounts" do
+        visit signup_path
+        fill_in 'Nickname', :with => "jack"
+        fill_in 'Email', :with => "jack@example.com"
+        fill_in 'Password', :with => "password"
+        fill_in 'Password confirmation', :with => "password"
+        click_button "Sign-up with Linkr"
+        page.should have_content("successfully")
+      end
+    end
+
+  - Most of the time you'll use: 
+  - visit
+  - fill_in
+  - click_button
+  - click_link
+  - page.should have_content('x')
+
+== Guard Primer
+
+  - This essentially replaces Autotest
+  - Once configured, it watches your application for changes and runs specs for the right files automagically
+  - Gotta have this. You can't run specs manually all the time. You will die along with your feeble hands.
+  - Basically set and forget (configure once or twice and done)
+  - BEWARE the gem dependency for filesystem monitoring is different on each platform (osx, linux, windows)
+
+== Factory Girl Primer
+
+  - Alternative to yaml fixtures
+  - Competes against Machinist - meh, never could get into it
+  - Allows you create... factories... that make whatever data you need for your models
+  
+    FactoryGirl.define do
+      sequence :nickname do |n|
+        "person#{n}"
+      end
+
+      sequence :email do |n|
+        "person#{n}@example.com"
+      end
+
+      factory :user do |f|
+        f.nickname {Factory.next :nickname}
+        f.email    {Factory.next :email}
+        f.password 'password'
+      end
+    end
+
+  - Factory(:user) # creates a user in the database
+  - Factory(:user, :nickname => 'happy') # overrides
+  - Factory.attributes_for(:user) doesn't touch the database, only generates attributes.
+
+  - Dynamic stuff needs to be in {} for example 
+
+      f.created_at { rand(10).years.ago }
+
+  - sequence will allow you to generate stuff in sequential order (good for things that require unique attributes)
+  - you can also specify other factories to build out relationships but beware, that can get costly when chained ;)
+
+== Shoulda Matchers Primer
+
+  - Add a few matchers to Rspec
+  - Mostly I use this for validations
+
+    describe User do
+      before do
+        @user = Factory(:user)
+      end
+
+      it { should validate_presence_of(:nickname) }
+      it { should validate_presence_of(:email) }
+      it { should validate_presence_of(:password) }
+
+      it { should validate_uniqueness_of(:email) }
+      it { should validate_uniqueness_of(:nickname) }
+    end
+  
+  - Yeah, pretty awesome.
+
+LETS ROLL.
+
+
