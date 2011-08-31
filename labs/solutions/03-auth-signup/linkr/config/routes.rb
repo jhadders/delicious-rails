@@ -1,9 +1,7 @@
 Linkr::Application.routes.draw do
-  get "users/new"
-
-  get "welcome/index"
-
   match '/signup' => 'users#new'
+
+  resources :users, :only => [:new, :create]
 
   root :to => 'welcome#index'
 end
