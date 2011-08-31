@@ -13,13 +13,15 @@
 == What are we building?
 
   - a delicious clone (show delicious.com)
+  - an automated test harness (guard leading the way in this case)
   - auth from scratch (using the new has_secure_password)
-  - an automated test harness (guard in this case)
+  - basic bookmarking
 
 == How are we building it?
 
   - using test-first methodologies 
-  - top-down, request specs first (capybara)
+  - top-down and outside-in, request specs first (capybara)
+  - request -> controller -> model
 
 == What are we using to build it?
 
@@ -29,6 +31,8 @@
   - guard (alternative to autotest)
   - factory_girl (alternative to fixtures)
   - shoulda-matchers (nice validation tests in rspec)
+  - spork (forking rspec harness)
+  - launchy (debugging for capybara)
 
 == Test-first?
 
@@ -47,6 +51,14 @@
   - Forces you to slow down and do one thing at a time
   - Give you more time to reflect upon your code (really, this matters)
   - Makes it easier for other developers. Faster on-boarding.
+
+== Notes
+
+  - Ideally you want to test first, sometimes it's not realistic
+  - It's hard to test something if you don't know what you're building
+  - Sketch out an idea with code see if it's viable. THEN start over with tests.
+  - OR if your code is reasonable, write tests for it AFTER... not as good but still fine.
+  - Sometimes you inherit an app with no tests, test components before you make changes
 
 == Disclaimer
 
@@ -188,6 +200,21 @@
   - If you can't figure out why something is hosed, you can save see the page mid-spec 
   - Great for diagnosing wtf is going on when you're lost or confused
 
-LETS ROLL.
+== The Testing Stack
+
+  We're getting the band back together
+
+  - Rails 3.1
+  - Rspec 2
+  - Capybara
+  - Guard
+  - Factory Girl
+  - Shoulda Matchers
+  - Spork
+  - Launchy
+
+== LETS ROLL 
+  
+  - lab/hackfest
 
 
