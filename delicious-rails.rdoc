@@ -175,6 +175,19 @@
   
   - Yeah, pretty awesome.
 
+== Spork Primer
+
+  - Spork forks.
+  - Instead of your entire env loading each time your run specs, it only happens once.
+  - Speeds things up. Rails 3 is a pig when it comes to starting up
+
+== Launchy Primer
+
+  - Companion to Capybara
+  - Allows the use of 'save_and_open_page' within request specs
+  - If you can't figure out why something is hosed, you can save see the page mid-spec 
+  - Great for diagnosing wtf is going on when you're lost or confused
+
 LETS ROLL.
 
 
