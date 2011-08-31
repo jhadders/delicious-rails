@@ -1,10 +1,8 @@
-= Lab 02: Setup Rspec and Capybara
+= Lab 03: Auth Signup
 
-1. Add rspec-rails and capybara to Gemfile
-2. Run rspec generator and add capybara to spec_helper
-3. Create a request spec called homepage_spec.rb
-4. Write a failing request spec that verifies that the root page has "Welcome to Linkr"
-5. Remove default public/index page and create a welcome controller with an index
-6. Update your default route (root_url) to point to welcome#index
-7. Verify your spec passes
+1. Create a request spec called auth_spec.rb
+2. Failing spec: homepage has a signup link
+3. Make spec pass
+4. Failing spec: signup page allows account creation
+5. Make spec pass hint: users model and controller
 
