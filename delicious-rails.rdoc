@@ -1,10 +1,21 @@
 == 1. Why?
+
  - Increased confidence about quality and correctness of application code
  - Built-in documentation of the application code's intent
  - Ensures refactoring does not alter the code's contract
  - Forces you to slow down and do one thing at a time
+ - Give you more time to reflect upon your code (really, this matters)
+ - Makes it easier for other developers. Faster on-boarding.
+
 == 2. How?
+
  - Write a spec
  - Run that spec
  - See it fail
  - Write just enough code to make the spec pass
+
+== 3. Haters gonna hate (and be wrong)
+
+ - Too slow 
+ - Doubles your effort
+ - 
