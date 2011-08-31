@@ -3,7 +3,8 @@
 == Introductions
 
   - Paul and Adam intro WELCOME TO ZOMBOCOM.
-  - A little about Intridea, who, where, how many, distributed, 5 years, etc
+  - A little about Intridea, who, where, how many, distributed, 5 years,
+    etc
 
   Them, each say their name (we write it down), 
         where they work, 
@@ -39,13 +40,15 @@
   - TDD/BDD, whatever - just test your code
   - Write the test first. Seriously. No code first.
   - Explain what you want to do. Specify what you want to build.
-  - Then write the smallest amount of code required to make that test pass.
+  - Then write the smallest amount of code required to make that test
+    pass.
   - Review the test and the code, refactor/tweak, start the cycle again.
   - Outside-in, Test from the interface, then work your way down.
 
 == But why?
 
-  - Increased confidence about quality and correctness of application code
+  - Increased confidence about quality and correctness of application
+    code
   - Built-in documentation of the application code's intent
   - Ensures refactoring does not alter the code's contract
   - Forces you to slow down and do one thing at a time
@@ -56,9 +59,12 @@
 
   - Ideally you want to test first, sometimes it's not realistic
   - It's hard to test something if you don't know what you're building
-  - Sketch out an idea with code see if it's viable. THEN start over with tests.
-  - OR if your code is reasonable, write tests for it AFTER... not as good but still fine.
-  - Sometimes you inherit an app with no tests, test components before you make changes
+  - Sketch out an idea with code see if it's viable. THEN start over
+    with tests.
+  - OR if your code is reasonable, write tests for it AFTER... not as
+    good but still fine.
+  - Sometimes you inherit an app with no tests, test components before
+    you make changes
 
 == Disclaimer
 
@@ -66,11 +72,13 @@
   - This app will be ugly. Not focusing on styles today.
   - We only have 3 hours. We won't finish. We'll hit the basics.
   - We'll code a bit, you'll code a bit, and so on.
-  - PLEASE ASK STUPID QUESTIONS. NO REALLY. YOU'RE NOT THE ONLY ONE THINKING IT, help others :)
+  - PLEASE ASK STUPID QUESTIONS. NO REALLY. YOU'RE NOT THE ONLY ONE
+    THINKING IT, help others :)
 
 == Perhaps a quick Rails Primer / Refresher?
 
-  - If you're not familiar with Rails you may want to pair up with someone who is... 
+  - If you're not familiar with Rails you may want to pair up with
+    someone who is... 
 
 == Quick Rspec Primer
 
@@ -91,16 +99,19 @@
     end
 
   - 'rake spec' will run all the specs in your project
-  - rake -T spec will show you all the options (models, requests, controllers)
+  - rake -T spec will show you all the options (models, requests,
+    controllers)
   - you have before/after for setup/teardown
   
 == Quick Capybara Primer
 
   - A good replacement / alternative to the verbosity of Cucumber.
-  - Integrates with Rspec. It reads like rspec. Can use the same before/describe/context blocks.
+  - Integrates with Rspec. It reads like rspec. Can use the same
+    before/describe/context blocks.
   - Also introduces alternative background/feature/scenario blocks 
   - Sometimes known as "request" specs
-  - These test the interface and killed view specs for me (sweet! hate those things)
+  - These test the interface and killed view specs for me (sweet! hate
+    those things)
 
     feature "Signing Up:" do
       scenario "The homepage should have a signup link" do
@@ -129,16 +140,20 @@
 == Guard Primer
 
   - This essentially replaces Autotest
-  - Once configured, it watches your application for changes and runs specs for the right files automagically
-  - Gotta have this. You can't run specs manually all the time. You will die along with your feeble hands.
+  - Once configured, it watches your application for changes and runs
+    specs for the right files automagically
+  - Gotta have this. You can't run specs manually all the time. You will
+    die along with your feeble hands.
   - Basically set and forget (configure once or twice and done)
-  - BEWARE the gem dependency for filesystem monitoring is different on each platform (osx, linux, windows)
+  - BEWARE the gem dependency for filesystem monitoring is different on
+    each platform (osx, linux, windows)
 
 == Factory Girl Primer
 
   - Alternative to yaml fixtures
   - Competes against Machinist - meh, never could get into it
-  - Allows you create... factories... that make whatever data you need for your models
+  - Allows you create... factories... that make whatever data you need
+    for your models
   
     FactoryGirl.define do
       sequence :nickname do |n|
@@ -158,14 +173,17 @@
 
   - Factory(:user) # creates a user in the database
   - Factory(:user, :nickname => 'happy') # overrides
-  - Factory.attributes_for(:user) doesn't touch the database, only generates attributes.
+  - Factory.attributes_for(:user) doesn't touch the database, only
+    generates attributes.
 
   - Dynamic stuff needs to be in {} for example 
 
       f.created_at { rand(10).years.ago }
 
-  - sequence will allow you to generate stuff in sequential order (good for things that require unique attributes)
-  - you can also specify other factories to build out relationships but beware, that can get costly when chained ;)
+  - sequence will allow you to generate stuff in sequential order (good
+    for things that require unique attributes)
+  - you can also specify other factories to build out relationships but
+    beware, that can get costly when chained ;)
 
 == Shoulda Matchers Primer
 
@@ -190,14 +208,16 @@
 == Spork Primer
 
   - Spork forks.
-  - Instead of your entire env loading each time your run specs, it only happens once.
+  - Instead of your entire env loading each time your run specs, it only
+    happens once.
   - Speeds things up. Rails 3 is a pig when it comes to starting up
 
 == Launchy Primer
 
   - Companion to Capybara
   - Allows the use of 'save_and_open_page' within request specs
-  - If you can't figure out why something is hosed, you can save see the page mid-spec 
+  - If you can't figure out why something is hosed, you can save see the
+    page mid-spec 
   - Great for diagnosing wtf is going on when you're lost or confused
 
 == The Testing Stack
