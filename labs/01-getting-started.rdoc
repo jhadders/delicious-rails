@@ -1,7 +1,8 @@
 = Lab 01: Getting Started
 
 1. Install Ruby 1.9.2 
-2. Install Rails 3.1 gem (hint --pre)
+2. Install Rails 3.1.0 gem 
 3. Create a new Rails application
 4. Start rails server
 5. Confirm that your app is running at http://localhost:3000
+
