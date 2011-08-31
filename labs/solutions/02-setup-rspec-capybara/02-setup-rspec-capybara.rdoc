@@ -4,8 +4,8 @@
 
     # Gemfile
     group :development, :test do
-      rails-rspec
-      capybara
+      gem 'rspec-rails'
+      gem 'capybara'
     end
 
     # Bundle the dependencies
